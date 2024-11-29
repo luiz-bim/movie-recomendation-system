@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Completo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #444;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #218838;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+
+        a.secondary {
+            background-color: #007bff;
+            margin-left: 10px;
+        }
+
+        a.secondary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro Completo</h1>
+    
+    <p>🎉 <strong>Parabéns!</strong> Seu cadastro foi realizado com sucesso.</p>
+    <p>Seu User ID é: <strong>{{ user_id }}</strong></p>
+
+    <p>Agora você pode continuar a avaliar filmes com seu novo usuário!</p>
+
+    <!-- Link para a próxima etapa -->
+    <a href="{{ url_for('avaliar_filmes', user_id=user_id) }}">Avaliar Filmes</a>
+    <a href="{{ url_for('cadastrar_usuario') }}" class="secondary">Cadastrar um novo usuário</a>
+</body>
+</html>

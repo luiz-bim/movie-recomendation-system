@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliar Filmes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        select, input[type="number"], button {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #mensagem-sucesso {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #filmes-lista li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Avalie os Filmes</h1>
+    <form method="POST">
+        <h2>Escolha o gênero de filmes:</h2>
+        <select name="genero" id="genero" required>
+            <option value="">Selecione um Gênero</option>
+            {% for genero in generos %}
+                <option value="{{ genero }}">{{ genero }}</option>
+            {% endfor %}
+        </select>
+
+        <h2>Selecione uma nota de 1 a 5 para os filmes:</h2>
+        <div id="filmes-lista">
+            <!-- Filmes serão carregados aqui dinamicamente com base no gênero escolhido -->
+        </div>
+
+        <button type="submit">Enviar Avaliações</button>
+    </form>
+
+    {% if sucesso %}
+        <div id="mensagem-sucesso" style="color: green; margin-top: 20px;">
+            <p>Avaliação realizada com sucesso! Você pode continuar avaliando filmes.</p>
+        </div>
+
+        <form action="{{ url_for('finalizar_avaliacoes') }}" method="POST" style="display:inline;">
+            <button type="submit">Finalizar Avaliações</button>
+        </form>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}">Voltar para a Página Inicial</a>
+
+    <script>
+        const filmesPorGenero = {{ filmes_por_genero | tojson }};
+        const generoSelecionado = document.getElementById('genero');
+        const filmesContainer = document.getElementById('filmes-lista');
+
+        generoSelecionado.addEventListener('change', function() {
+            const genero = this.value;
+            filmesContainer.innerHTML = '';
+
+            if (genero && filmesPorGenero[genero]) {
+                filmesPorGenero[genero].forEach(filme => {
+                    const li = document.createElement('li');
+                    li.innerHTML = ` 
+                        <label for="movie_${filme.MovieId}">${filme.Title}</label>
+                        <input type="number" name="${filme.MovieId}" id="movie_${filme.MovieId}" min="1" max="5" step="1">
+                    `;
+                    filmesContainer.appendChild(li);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

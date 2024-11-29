@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select:focus, input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            background-color: #1e7e34;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastrar Usuário</h1>
+    
+    <form method="POST">
+        <!-- Gênero -->
+        <div>
+            <label for="gender">Gênero:</label>
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Selecione seu gênero</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+        </div>
+        
+        <!-- Faixa Etária -->
+        <div>
+            <label for="age_range">Faixa Etária:</label>
+            <select name="age_range" id="age_range" required>
+                <option value="" disabled selected>Selecione sua faixa etária</option>
+                <option value="1">Menor de 18</option>
+                <option value="18">18-24</option>
+                <option value="25">25-34</option>
+                <option value="35">35-44</option>
+                <option value="45">45-49</option>
+                <option value="50">50-55</option>
+                <option value="56">56+</option>
+            </select>
+        </div>
+        
+        <!-- Ocupação -->
+        <div>
+            <label for="occupation">Ocupação:</label>
+            <select name="occupation" id="occupation" required>
+                <option value="" disabled selected>Selecione sua ocupação</option>
+                <option value="0">Outro ou não especificado</option>
+                <option value="1">Acadêmico/Educador</option>
+                <option value="2">Artista</option>
+                <option value="3">Administrativo/Secretariado</option>
+                <option value="4">Estudante universitário</option>
+                <option value="5">Atendimento ao cliente</option>
+                <option value="6">Médico/Saúde</option>
+                <option value="7">Executivo/Gerencial</option>
+                <option value="8">Agricultor</option>
+                <option value="9">Dono de casa</option>
+                <option value="10">Estudante de Ensino Fundamental/Médio</option>
+                <option value="11">Advogado</option>
+                <option value="12">Programador</option>
+                <option value="13">Aposentado</option>
+                <option value="14">Vendas/Marketing</option>
+                <option value="15">Cientista</option>
+                <option value="16">Autônomo</option>
+                <option value="17">Técnico/Engenheiro</option>
+                <option value="18">Artífice/Trabalhador manual</option>
+                <option value="19">Desempregado</option>
+                <option value="20">Escritor</option>
+            </select>
+        </div>
+        
+        <!-- CEP -->
+        <div>
+            <label for="zip_code">CEP:</label>
+            <input type="text" name="zip_code" id="zip_code" placeholder="Digite seu CEP" required>
+        </div>
+        
+        <!-- Botão para enviar o formulário -->
+        <div>
+            <button type="submit">Cadastrar</button>
+        </div>
+    </form>
+</body>
+</html>
